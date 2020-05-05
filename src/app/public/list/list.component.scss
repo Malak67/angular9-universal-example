@@ -1,0 +1,21 @@
+:host {
+  width: 100%;
+  height: 100%;
+
+  .w-full {
+    width: 100%;
+  }
+
+  .m-3 {
+    margin: 0.75rem !important;
+  }
+
+  .link-button {
+    text-decoration: none;
+    color: inherit !important;
+  }
+
+  .mw-300 {
+    max-width: 300px !important;
+  }
+}

@@ -1,0 +1,35 @@
+<div class="comment-container" fxLayout="column">
+  <h2 fxLayout="row">
+    Details for movie # {{ id }} - live readers - 
+    <!-- <app-counter></app-counter> -->
+  </h2>
+  <div *ngIf="details" fxLayoutAlign="center stretch">
+    <mat-card fxLayout="column" fxLayoutAlign="center center" class="card m-3">
+      <mat-card-header>
+        <mat-card-title>{{ details.title }}</mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+      </mat-card-header>
+      <img
+        mat-card-image
+        src="http://image.tmdb.org/t/p/w500/{{ details.backdrop_path }}"
+        alt="{{ details.original_title }} back poster"
+        class="mw-600"
+      />
+      <mat-card-content>
+        <p>Overview: {{ details.overview }}</p>
+        <p>Status: {{ details.status }}</p>
+        <p>Tagline: {{ details.tagline }}</p>
+        <p>
+          <span>Genres: </span>
+          <span *ngFor="let genre of details.genres">
+            <span>{{ genre.name }}, </span>
+          </span>
+        </p>
+
+        <button color="primary" mat-raised-button>
+          <a [href]="details.homepage" target="_blank">Homepage</a>
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

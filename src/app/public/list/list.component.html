@@ -1,0 +1,35 @@
+<div
+  *ngIf="listItems && listItems.length > 0"
+  fxLayout="row wrap"
+  fxLayout.xs="column"
+  fxLayoutAlign="space-evenly stretch"
+  fxFill
+  class="content w-full"
+>
+  <div
+    *ngFor="let item of listItems"
+    fxFlex="calc(33.3%)"
+    fxFlex.lt-md="calc(50%)"
+    fxFlex.xs="calc(90%)"
+    fxLayoutAlign="space-evenly stretch"
+  >
+    <mat-card fxLayout="column" fxLayoutAlign="center center" class="card m-3">
+      <mat-card-header>
+        <mat-card-title>{{ item.title }}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="http://image.tmdb.org/t/p/w500/{{item.poster_path}}" alt="{{item.original_title}} poster" class="mw-300 ">
+      <mat-card-content>
+        <p>
+          {{ item.overview }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button color="primary" mat-raised-button>
+          <a [routerLink]="[item.id]" class="link-button">
+            {{ "View details" | uppercase }}
+          </a>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
