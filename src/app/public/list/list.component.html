@@ -1,5 +1,5 @@
 <div
-  *ngIf="listItems && listItems.length > 0"
+  *ngIf="movies$ | async as movies"
   fxLayout="row wrap"
   fxLayout.xs="column"
   fxLayoutAlign="space-evenly stretch"
@@ -7,7 +7,7 @@
   class="content w-full"
 >
   <div
-    *ngFor="let item of listItems"
+    *ngFor="let item of movies"
     fxFlex="calc(33.3%)"
     fxFlex.lt-md="calc(50%)"
     fxFlex.xs="calc(90%)"

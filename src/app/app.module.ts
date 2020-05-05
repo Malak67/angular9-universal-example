@@ -7,6 +7,13 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TransferHttpCacheModule } from '@nguniversal/common';
+import { NgxsModule } from '@ngxs/store';
+import { AppState } from './appStore/app.store';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { environment } from '../environments/environment';
+import { PublicService } from './public/services/public.service';
 
 @NgModule({
   declarations: [
@@ -19,8 +26,12 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
+    NgxsModule.forRoot([AppState]),
+    NgxsRouterPluginModule.forRoot(),
+    NgxsReduxDevtoolsPluginModule.forRoot({ name: 'App Store' }),
+    environment.production ? [] : NgxsLoggerPluginModule.forRoot(),
   ],
-  providers: [],
+  providers: [PublicService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

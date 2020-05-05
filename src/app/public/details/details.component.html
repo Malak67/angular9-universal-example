@@ -1,32 +1,33 @@
 <div class="comment-container" fxLayout="column">
   <h2 fxLayout="row">
-    Details for movie # {{ id }} - live readers - 
+    Details for movie # {{ id }}
     <!-- <app-counter></app-counter> -->
   </h2>
-  <div *ngIf="details" fxLayoutAlign="center stretch">
-    <mat-card fxLayout="column" fxLayoutAlign="center center" class="card m-3">
+  <div *ngIf="selectedMovie$ | async as details" fxLayoutAlign="center stretch">
+    <p *ngIf="!details">The resource you requested could not be found.</p>
+    <mat-card *ngIf="details" fxLayout="column" fxLayoutAlign="center center" class="card m-3">
       <mat-card-header>
-        <mat-card-title>{{ details.title }}</mat-card-title>
-        <mat-card-subtitle></mat-card-subtitle>
+        <mat-card-title *ngIf="details.title">{{ details.title }}</mat-card-title>
       </mat-card-header>
       <img
+        *ngIf="details.backdrop_path"
         mat-card-image
         src="http://image.tmdb.org/t/p/w500/{{ details.backdrop_path }}"
         alt="{{ details.original_title }} back poster"
         class="mw-600"
       />
       <mat-card-content>
-        <p>Overview: {{ details.overview }}</p>
-        <p>Status: {{ details.status }}</p>
-        <p>Tagline: {{ details.tagline }}</p>
-        <p>
+        <p *ngIf="details.overview">Overview: {{ details.overview }}</p>
+        <p *ngIf="details.status">Status: {{ details.status }}</p>
+        <p *ngIf="details.tagline">Tagline: {{ details.tagline }}</p>
+        <p  *ngIf="details.genres && details.genres.length > 0">
           <span>Genres: </span>
           <span *ngFor="let genre of details.genres">
             <span>{{ genre.name }}, </span>
           </span>
         </p>
 
-        <button color="primary" mat-raised-button>
+        <button *ngIf="details.homepage" color="primary" mat-raised-button>
           <a [href]="details.homepage" target="_blank">Homepage</a>
         </button>
       </mat-card-content>

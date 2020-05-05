@@ -3,7 +3,7 @@
     <a [routerLink]="['/']">
       Movie SSR
     </a>
-    <!-- <app-counter></app-counter> -->
+   <app-counter *ngIf="isBrowser"></app-counter>
   </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>

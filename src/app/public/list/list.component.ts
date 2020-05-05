@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicService } from '../services/public.service';
+import { AppState } from '../../appStore/app.store';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { GetPopularMovies } from '../../appStore/app.actions';
 
 export interface Article {
   id: number;
@@ -15,14 +19,14 @@ export interface Article {
 })
 export class ListComponent implements OnInit {
 
+  @Select(AppState.movies) movies$: Observable<any[]>;
   listItems: any[];
-  constructor(readonly service: PublicService) { }
+  constructor(
+    readonly store: Store
+    ) { }
 
   ngOnInit(): void {
-    this.service.getList().subscribe((res: any) => {
-      console.log(res.results);
-      this.listItems = res.results;
-    });
+    this.store.dispatch(new GetPopularMovies());
   }
 
 }

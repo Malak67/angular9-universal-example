@@ -8,6 +8,7 @@ import { MainComponent } from './main/main.component';
 import { SharedModule } from '../shared/shared.module';
 import { PublicService } from './services/public.service';
 import { CounterComponent } from './counter/counter.component';
+import { UtilsService } from './services/utils.service';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { CounterComponent } from './counter/counter.component';
     SharedModule
   ],
   providers: [
-    PublicService
+    PublicService,
+    UtilsService
   ]
 })
 export class PublicModule { }
